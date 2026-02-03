@@ -9,22 +9,24 @@
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        if(headA==NULL || headA==NULL) return NULL;
-        unordered_map<ListNode*, int> mp;
+        if(headA==NULL || headB==NULL) return NULL;
+        if(headA==headB) return headA;
 
         ListNode* t1= headA;
         ListNode* t2= headB;
 
-        while(t1!=NULL){
-            mp[t1]=1;
-            t1=t1->next;
-        }
-        while(t2!=NULL){
-            if(mp.find(t2)!=mp.end()) return t2;
-            t2=t2->next;
+        while(t1!=t2){
+            if(t1==NULL) t1=headB;
+            else t1=t1->next;
+
+            if(t2==NULL) t2=headA;
+            else t2=t2->next;
+
+            if(t1==t2) return t1;
         }
         return NULL;
 
+        
 
 
     }
