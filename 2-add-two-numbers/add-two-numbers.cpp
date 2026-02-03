@@ -11,10 +11,6 @@
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        // if(l1==NULL && l2==NULL) return NULL;
-        // if(l1==NULL) return l2;
-        // if(l2==NULL) return l1;
-
         ListNode* t1=l1;
         ListNode* t2=l2;
         ListNode* h_ans=new ListNode(-1);
