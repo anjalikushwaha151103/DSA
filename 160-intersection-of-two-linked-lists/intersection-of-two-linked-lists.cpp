@@ -10,7 +10,6 @@ class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         if(headA==NULL || headB==NULL) return NULL;
-        if(headA==headB) return headA;
 
         ListNode* t1= headA;
         ListNode* t2= headB;
@@ -21,10 +20,8 @@ public:
 
             if(t2==NULL) t2=headA;
             else t2=t2->next;
-
-            if(t1==t2) return t1;
         }
-        return NULL;
+        return t1;
 
         
 
