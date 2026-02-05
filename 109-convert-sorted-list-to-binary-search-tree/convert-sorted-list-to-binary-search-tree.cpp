@@ -35,8 +35,6 @@ public:
             slow = slow->next;
             fast = fast->next->next;
         }
-
-        // Disconnect left half from mid
         if (prev) prev->next = nullptr;
 
         TreeNode* root = new TreeNode(slow->val);
