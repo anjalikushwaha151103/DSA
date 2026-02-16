@@ -6,7 +6,7 @@ public:
         int ans=0;
         int min_diff=INT_MAX;
 
-        for(int i=0;i<n;i++){
+        for(int i=0;i<n-2;i++){
             int j=i+1;
             int k=n-1;
             while(j<k){
@@ -16,8 +16,7 @@ public:
                 }else if(sum<target){
                     j++;
                 }else{
-                    k--;
-                    j++;
+                    return target;
                 }
                 int diff=abs(target-sum);
                 if(diff<min_diff){
