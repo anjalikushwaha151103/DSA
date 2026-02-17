@@ -9,7 +9,7 @@ public:
             stack<int> st;
             int k=0;
             for(int j=n2-1;j>=0;j--){
-                while(!st.empty() && st.top()<nums2[j]){
+                while(!st.empty() && st.top()<=nums2[j]){
                     st.pop();
                 }
                 if(nums1[i]==nums2[j]){
