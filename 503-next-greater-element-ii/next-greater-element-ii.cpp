@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<int> nextGreaterElements(vector<int>& nums) {
         int n=nums.size();
-        vector<int> v(n);
+        vector<int> v(n,-1);
         stack<int> st;
 
         for(int i=2*n-1;i>=0;i--){
@@ -10,8 +10,11 @@ public:
                 st.pop();
             }
 
-            if(st.empty()) v[i%n]=-1;
-            else v[i%n]=st.top();            
+            if(i<n){
+                if(!st.empty()){
+                    v[i]=st.top();            
+                }
+            }
             st.push(nums[i%n]);
         }
         return v;
