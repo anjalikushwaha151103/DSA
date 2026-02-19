@@ -4,8 +4,8 @@ public:
         int ans=0;
         int n=h.size();
 
-        vector<int> pre_max(n);
-        vector<int> suf_max(n);
+        vector <int> pre_max(n);
+        vector <int> suf_max(n);
 
         pre_max[0]=h[0];
         for(int i=1;i<n;i++){
