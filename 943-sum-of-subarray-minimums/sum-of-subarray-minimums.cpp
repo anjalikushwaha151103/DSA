@@ -1,45 +1,44 @@
 class Solution {
 public:
     int sumSubarrayMins(vector<int>& arr) {
-        int n = arr.size();
-        const int mod = 1e9 + 7;
-        long long ans = 0;
+        int n=arr.size();
+        const int mod=1e9+7;
 
-        vector<int> left(n), right(n);
+        vector<int> nse(n);
         stack<int> st;
-
-        // Previous Less Element (strictly smaller)
-        for(int i = 0; i < n; i++){
-            while(!st.empty() && arr[st.top()] > arr[i])
+        for(int i=n-1;i>=0;i--){
+            while(!st.empty() && arr[st.top()]>arr[i]){
                 st.pop();
+            }
 
-            if(st.empty())
-                left[i] = i + 1;
-            else
-                left[i] = i - st.top();
+            if(st.empty()) nse[i]=n;
+            else nse[i]=st.top();
 
             st.push(i);
         }
 
         while(!st.empty()) st.pop();
 
-        // Next Less Element (smaller or equal)
-        for(int i = n - 1; i >= 0; i--){
-            while(!st.empty() && arr[st.top()] >= arr[i])
+        vector<int> pse(n);
+        for(int i=0;i<n;i++){
+            while(!st.empty() && arr[st.top()]>=arr[i]){
                 st.pop();
+            }
 
-            if(st.empty())
-                right[i] = n - i;
-            else
-                right[i] = st.top() - i;
+            if(st.empty()) pse[i]=-1;
+            else pse[i]=st.top();
 
             st.push(i);
         }
 
-        for(int i = 0; i < n; i++){
-            ans = (ans + (long long)arr[i] * left[i] * right[i]) % mod;
-        }
 
+        int ans=0;
+        for(int i=0;i<n;i++){
+            long long left=(nse[i]-i);
+            long long right =(i-pse[i]);
+            ans = (ans+ (arr[i]* ((left*right)%mod) )%mod) %mod;
+        }
         return ans;
+        
     }
 };
