@@ -29,12 +29,11 @@ public:
             else pse[i]=st.top();
 
             st.push(i);
-        }
-
-        for(int i=0;i<n;i++){
             int area= arr[i]*(nse[i]-pse[i]-1);
             max_ar=max(area,max_ar);
+
         }
+
         return max_ar;
         
     }
