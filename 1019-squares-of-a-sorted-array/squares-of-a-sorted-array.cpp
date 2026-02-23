@@ -11,14 +11,12 @@ public:
             if(abs(nums[i])>=abs(nums[j])){
                 ans[k]=nums[i]*nums[i];
                 i++;
-                k--;
             }
             else if(abs(nums[i])<abs(nums[j])){
                 ans[k]=nums[j]*nums[j];
                 j--;
-                k--;
             }
-
+            k--;
         }
         return ans;
     }
