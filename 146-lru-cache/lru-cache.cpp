@@ -44,7 +44,6 @@ public:
         
     }
 
-    
     int get(int key) {
         if(mp.find(key)==mp.end()) return -1;
         else{
@@ -73,7 +72,6 @@ public:
             oldnode->val=value;
             deleteNode(oldnode);
             addNode(oldnode);
-            mp[key]=oldnode;
         }
         
     }
