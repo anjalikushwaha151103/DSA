@@ -17,6 +17,7 @@ public:
             }
             else{
                 ans=(h[i]*(j-i));
+                i++;
                 j--;
             }
             maxi=max(maxi,ans);
