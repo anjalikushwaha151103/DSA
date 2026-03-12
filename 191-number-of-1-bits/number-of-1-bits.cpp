@@ -6,7 +6,6 @@ public:
             cnt++;
             n=n&(n-1);
         }
-        return cnt;
-        
+        return cnt;    
     }
 };
