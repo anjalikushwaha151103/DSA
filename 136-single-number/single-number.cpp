@@ -5,7 +5,6 @@ public:
         for(int i:nums){
             ans=ans^i;
         }
-        return ans;
-        
+        return ans; 
     }
 };
