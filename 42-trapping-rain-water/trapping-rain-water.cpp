@@ -16,7 +16,6 @@ public:
             ans += min(left_max, suf_max[i]) - h[i];
 
         }
-        return ans;
-        
+        return ans; 
     }
 };
