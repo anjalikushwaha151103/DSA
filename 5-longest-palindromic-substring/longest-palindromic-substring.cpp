@@ -1,30 +1,42 @@
+#include <vector>
+#include <string>
+#include <algorithm>
+using namespace std;
+
 class Solution {
 public:
     string longestPalindrome(string s) {
-        int n=s.length();
-        int max_len=0;
-        int index=0;
-        for(int i=0;i<n;i++){
-            int odd=fn(s,i,i);
-            int even=fn(s,i,i+1);
-            int maxi=max(odd,even);
-            if(maxi>max_len){
-                max_len=maxi;
-                index = i - (max_len - 1) / 2;
-;
+        // Preprocess string: insert '#' between each char and at ends
+        string t = "#";
+        for (char c : s) {
+            t += c;
+            t += '#';
+        }
+
+        int n = t.size();
+        vector<int> p(n, 0); // palindrome radius array
+        int maxi = 0;
+
+        // Manacher-like expansion to find palindrome radius at each center
+        for (int i = 0; i < n; i++) {
+            while (i + p[i] + 1 < n && i - p[i] - 1 >= 0 && t[i + p[i] + 1] == t[i - p[i] - 1]) {
+                p[i]++;
+            }
+            maxi = max(maxi, p[i]);
+        }
+
+        // Extract longest palindrome substring from original string
+        // Find first center with max radius
+        int centerIndex = 0;
+        for (int i = 0; i < n; i++) {
+            if (p[i] == maxi) {
+                centerIndex = i;
+                break;
             }
         }
-        if(max_len==0) return "";
-        else{
-            return s.substr(index,max_len);
-        }
-    }
 
-    int fn(string str , int left , int right){
-        while(left>=0 && right<str.length() && str[left]==str[right] ){
-            left--;
-            right++;
-        }
-        return right-left-1;
+        // Calculate starting index in original string 's'
+        int start = (centerIndex - maxi) / 2;
+        return s.substr(start, maxi);
     }
 };
