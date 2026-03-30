@@ -43,7 +43,6 @@ public:
                 pq.push(smallest->next);
             }
         }
-
         return dummy->next;
     }
 };
