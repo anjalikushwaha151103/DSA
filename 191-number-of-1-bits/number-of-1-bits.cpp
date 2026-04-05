@@ -1,11 +1,11 @@
 class Solution {
 public:
     int hammingWeight(int n) {
-        int cnt=0;
-        while(n!=0){
-            cnt++;
-            n=n&(n-1);
+        int count = 0;
+        while (n) {
+            n &= (n - 1); // clears the lowest set bit
+            ++count;
         }
-        return cnt;    
+        return count;
     }
 };
