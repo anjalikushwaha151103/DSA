@@ -20,6 +20,7 @@ public:
             fast=fast->next;
        } 
 
+
        if(fast==NULL){
         ListNode* delnode= head;
         head=head->next;
@@ -27,10 +28,12 @@ public:
         return head;
        }
 
+
        while(fast->next!=NULL){
         slow=slow->next;
         fast=fast->next;
        }
+
 
        ListNode* delnode=slow->next;
        slow->next=slow->next->next;
