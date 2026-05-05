@@ -1,24 +1,22 @@
 class Solution {
 public:
     vector<int> singleNumber(vector<int>& nums) {
-        unordered_map<int,int> mp;
         int n=nums.size();
-        for(int i=0;i<n;i++){
-            if(mp.find(nums[i])==mp.end()){
-                mp[nums[i]]=1;
-            }else{
-                mp[nums[i]]++;
-            }
+        int xorr=0;
+        for(int i=0; i<n; i++){
+            xorr=xorr^nums[i];
         }
 
-        vector<int> ans;
+        unsigned int sb = (unsigned int)xorr & (-(unsigned int)xorr);
+        int b1=0;
+        int b2=0;
 
-        for(auto it:mp){
-            if(it.second==1){
-                ans.push_back(it.first);
-            }
+        for(int i=0; i<n; i++){
+            if((nums[i]&sb)==0) b1=b1^nums[i];
+            else b2=b2^nums[i];
         }
-        return ans;
+
+        return {b1,b2};
         
     }
 };
