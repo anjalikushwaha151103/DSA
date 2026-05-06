@@ -4,15 +4,25 @@ public:
         unordered_map<int,int> mp;
         int n=nums.size();
         for(int i=0;i<n;i++){
-            if(mp.find(nums[i])==mp.end()) mp[nums[i]]=1;
-            else mp[nums[i]]++;
+            for(int j=i+1;j<n;j++){
+                if(nums[i] > nums[j]){
+                    int temp = nums[i];
+                    nums[i] = nums[j];
+                    nums[j] = temp;
+                }
+            }
+        }
+        for(int i = 0; i < n - 2; i += 3){
+            if(nums[i] != nums[i + 1]){
+                return nums[i];
+            }
         }
 
-        for(auto it:mp){
-            if(it.second==1) return it.first;
-        }
+        return nums[n - 1];
 
-       return -1; 
+        
+
+       return nums[n-1]; 
         
     }
 };
