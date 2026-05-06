@@ -1,28 +1,17 @@
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        unordered_map<int,int> mp;
+        int ans=0;
         int n=nums.size();
-        for(int i=0;i<n;i++){
-            for(int j=i+1;j<n;j++){
-                if(nums[i] > nums[j]){
-                    int temp = nums[i];
-                    nums[i] = nums[j];
-                    nums[j] = temp;
-                }
+        for(int i=0;i<32;i++){
+            int cnt=0;
+            for(int j=0;j<n;j++){
+                if(nums[j]&(1<<i)) cnt++;
             }
-        }
-        for(int i = 0; i < n - 2; i += 3){
-            if(nums[i] != nums[i + 1]){
-                return nums[i];
-            }
+
+            if(cnt%3==1) ans=ans|(1<<i);
         }
 
-        return nums[n - 1];
-
-        
-
-       return nums[n-1]; 
-        
+        return ans;
     }
 };
