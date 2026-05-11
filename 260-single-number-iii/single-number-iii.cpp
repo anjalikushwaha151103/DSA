@@ -15,8 +15,6 @@ public:
             if((nums[i]&sb)==0) b1=b1^nums[i];
             else b2=b2^nums[i];
         }
-
         return {b1,b2};
-        
     }
 };
