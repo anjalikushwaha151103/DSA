@@ -14,8 +14,7 @@ public:
                 l++;
                 
             }
-            int len= r-l+1;
-            max_len=max(len,max_len);
+            max_len=max(max_len,r-l+1);
             r++;
         }
         return max_len;
