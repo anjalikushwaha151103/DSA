@@ -8,13 +8,10 @@ public:
         int max_len=0;
 
         while(r<n){
-            if(mp.find(s[r])==mp.end()){
-                mp[s[r]]=r;
-                
-            }else{
-                l = max(l, mp[s[r]] + 1);
-                mp[s[r]]=r;
+             if(mp.find(s[r]) != mp.end() && mp[s[r]] >= l) {
+                l = mp[s[r]] + 1;
             }
+            mp[s[r]]=r;
             max_len=max(max_len,(r-l+1));
             r++;
         }
