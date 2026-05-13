@@ -8,22 +8,10 @@ public:
         for(int r=0;r<n;r++){
             mp[fruits[r]]++;
 
-            // if(mp.size()>2){
-            //     int rem=fruits[l];
-            //     while(l<n && mp[rem]!=0){
-            //         if(fruits[l]==rem){
-            //             mp[rem]--;
-            //         }
-            //         l++;
-            //     }
-            //     mp.erase(rem);
-            // }
             while(mp.size() > 2) {
                 mp[fruits[l]]--;
-
                 if(mp[fruits[l]] == 0)
                     mp.erase(fruits[l]);
-
                 l++;
             }
 
