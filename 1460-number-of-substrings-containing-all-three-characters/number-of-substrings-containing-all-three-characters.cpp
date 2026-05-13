@@ -2,26 +2,20 @@ class Solution {
 public:
     int numberOfSubstrings(string s) {
 
-        int freq[3] = {0};
+        unordered_map<char,int> mp;
+        int n= s.size();
+        int l=0;
+        int cnt=0;
+        for(int r=0;r<n;r++){
+            mp[s[r]]++;
 
-        int n = s.size();
-        int l = 0;
-        int cnt = 0;
-
-        for(int r = 0; r < n; r++) {
-
-            freq[s[r] - 'a']++;
-
-            while(freq[0] > 0 && freq[1] > 0 && freq[2] > 0) {
-
-                cnt += (n - r);
-
-                freq[s[l] - 'a']--;
-
+            while(mp.size()==3){
+                cnt+=(n-r);
+                mp[s[l]]--;
+                if(mp[s[l]]==0) mp.erase(s[l]);
                 l++;
             }
         }
-
         return cnt;
     }
 };
