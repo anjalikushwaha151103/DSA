@@ -3,20 +3,22 @@ public:
     vector<int> sortedSquares(vector<int>& nums) {
         int n=nums.size();
         vector<int> ans(n);
-        int i=0;
-        int j=n-1;
-        int k=n-1;
+        int l=0;
+        int r=n-1;
+        int i= n-1;
 
-        while(i<=j){
-            if(abs(nums[i])>=abs(nums[j])){
-                ans[k]=nums[i]*nums[i];
-                i++;
+        while(l<=r){
+            int left=nums[l]*nums[l];
+            int right=nums[r]*nums[r];
+
+            if(left>right){
+                ans[i]=left;
+                l++;
+            }else{
+                ans[i]=right;
+                r--;
             }
-            else if(abs(nums[i])<abs(nums[j])){
-                ans[k]=nums[j]*nums[j];
-                j--;
-            }
-            k--;
+            i--;
         }
         return ans;
     }
