@@ -6,17 +6,18 @@ public:
         int r=0;
         int max_len=0;
         int max_f=0;
-        unordered_map<char,int> mp;
+        // unordered_map<char,int> mp;
+        int arr[26]={0};
         int chng=0;
 
         while(r<n){
             
-            mp[s[r]]++;
-            max_f=max(max_f,mp[s[r]]);
+            arr[s[r]-'A']++;
+            max_f=max(max_f,arr[s[r]-'A']);
             chng=(r-l+1)-max_f;
 
             while(chng>k){
-                mp[s[l]]--;
+                arr[s[l]-'A']--;
                 l++;
                 chng=(r-l+1)-max_f;
             }
