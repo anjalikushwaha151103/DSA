@@ -34,7 +34,6 @@ public:
                 }
 
                 freq[(unsigned char)s[l]]++;
-
                 if (freq[(unsigned char)s[l]] > 0)
                     matched--;
 
@@ -42,8 +41,6 @@ public:
             }
         }
 
-        return minLen == INT_MAX
-               ? ""
-               : s.substr(start, minLen);
+        return minLen == INT_MAX? "" : s.substr(start, minLen);
     }
 };
