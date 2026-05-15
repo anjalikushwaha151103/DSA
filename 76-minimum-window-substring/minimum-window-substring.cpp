@@ -33,8 +33,6 @@ public:
         }
 
         if(start==-1) return "";
-        return s.substr(start,min_len);
-         
-        
+        return s.substr(start,min_len);   
     }
 };
