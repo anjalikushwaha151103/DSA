@@ -20,12 +20,9 @@ class Solution {
 public:
     Node* connect(Node* root) {
         if (!root) return NULL;
-
         Node* leftmost = root;
-
         while (leftmost->left) {
             Node* curr = leftmost;
-
             while (curr) {
                 curr->left->next = curr->right;
                 if (curr->next) {
@@ -35,7 +32,6 @@ public:
             }
             leftmost = leftmost->left;
         }
-
         return root;
     }
 };
