@@ -6,7 +6,6 @@ public:
             int val;
             Node* prev;
             Node* next;
-        
             Node(int key,int val){
                 this->key=key;
                 this->val=val;
@@ -36,11 +35,11 @@ public:
     }
 
     void addNode(Node* newnode){
-        Node* headnext= head->next;
+        Node* hnext= head->next;
         head->next=newnode;
         newnode->prev=head;
-        newnode->next=headnext;
-        headnext->prev=newnode;         
+        newnode->next=hnext;
+        hnext->prev=newnode;         
         
     }
 
