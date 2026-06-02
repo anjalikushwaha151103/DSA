@@ -38,7 +38,6 @@ public:
                 rev[words[i]] = pattern[i];
             }
         }
-
         return true;
     }
 };
