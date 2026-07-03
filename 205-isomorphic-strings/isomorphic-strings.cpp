@@ -2,9 +2,8 @@ class Solution {
 public:
     bool isIsomorphic(string s, string t) {
         int n=s.size();
-        int m=t.size();
 
-        if(n!=m) return false;
+        if(n!=t.size()) return false;
 
         unordered_map<char,char>mp1;
         unordered_map<char,char>mp2;
