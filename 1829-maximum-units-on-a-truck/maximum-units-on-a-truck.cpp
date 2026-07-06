@@ -13,10 +13,8 @@ public:
                 max_p+=boxTypes[i][0]*boxTypes[i][1];
                 truckSize-=boxTypes[i][0];
             }else{
-                if(truckSize>0){
-                    max_p+=truckSize *boxTypes[i][1];
-                    return max_p;
-                }
+                max_p+=truckSize *boxTypes[i][1];
+                return max_p;
             }
         }
         return max_p;
