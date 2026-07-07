@@ -5,7 +5,6 @@ public:
         return(atmost(nums, goal)-atmost(nums, goal-1));
     }
 
-
     int atmost(vector<int>& nums, int goal){
         if(goal < 0) return 0;
         int n=nums.size();
