@@ -4,7 +4,6 @@ public:
         return (atmost(nums,k)- atmost(nums,k-1));
         
     }
-
     int atmost(vector<int>& nums, int k){
         if(k<0) return 0;
         int n=nums.size();
@@ -12,9 +11,9 @@ public:
         int cnt=0;
         int ans=0;
         for(int r=0;r<n;r++){
-            if(nums[r]%2==1) cnt++;
+            cnt+=(nums[r]&1);
             while(cnt>k){
-                if(nums[l]%2==1) cnt--;
+                cnt-=(nums[l]&1);
                 l++;
             }
             ans+=(r-l+1);
