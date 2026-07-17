@@ -1,7 +1,13 @@
 class Solution {
 public:
     double myPow(double x, int n) {
-        if(n<0 && n>INT_MIN){
+        long long N=n;
+        return myPow(x,N);
+
+    }
+
+    double myPow(double x, long long n){
+        if(n<0){
             n=abs(n);
             x=1/x;
         }
@@ -12,8 +18,5 @@ public:
             return half*half;
         }
         return x* myPow(x,n-1);
-
-        
-
     }
 };
