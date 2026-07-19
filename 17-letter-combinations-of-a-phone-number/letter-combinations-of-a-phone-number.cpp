@@ -9,7 +9,7 @@ public:
         mp[6]={'m','n','o'};
         mp[7]={'p','q','r','s'};
         mp[8]={'t','u','v'};
-        mp[9]={'x','y','w','z'};
+        mp[9]={'w','x','y','z'};
 
         string s="";
         vector<string> temp;
