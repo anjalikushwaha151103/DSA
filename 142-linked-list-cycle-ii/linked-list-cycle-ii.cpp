@@ -16,16 +16,15 @@ public:
         while(fast!=NULL && fast->next!=NULL){
             fast=fast->next->next;
             slow=slow->next;
-            if(fast==slow) break;
+            if(fast==slow){
+                fast=head;
+                while(slow!=fast){
+                    fast=fast->next;
+                    slow=slow->next;
+                }
+                return slow;
+            }
         }
-
-        if(slow!=fast) return NULL;
-
-        fast=head;
-        while(slow!=fast){
-            fast=fast->next;
-            slow=slow->next;
-        }
-        return slow;
+        return NULL;
     }
 };
