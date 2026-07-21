@@ -24,7 +24,7 @@ public:
             slow=slow->next;
         }
 
-        prev->next=prev->next->next;
+        prev->next=slow->next;
         delete(slow);
 
         return head;
