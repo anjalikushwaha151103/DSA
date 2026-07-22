@@ -10,54 +10,63 @@
  */
 class Solution {
 public:
-    ListNode* middleNode(ListNode* head) {
-        ListNode* slow=head;
-        ListNode* fast=head->next;
-        while(fast!=NULL && fast->next!=NULL){
-            slow=slow->next;
-            fast=fast->next->next;
-        }
-        return slow;
+    ListNode* sortList(ListNode* head) {
+        if(head==NULL || head->next==NULL) return head;
+        ListNode* mid=middleNode(head);
+        ListNode* midnext=mid->next;
+        mid->next=NULL;
+        ListNode* left=sortList(head);
+        ListNode* right=sortList(midnext);
+        ListNode* anshead = merge(left,right);
+        return anshead;
     }
 
+    ListNode* middleNode(ListNode* head) {
+        ListNode* fast= head;
+        ListNode* slow= head;
+        while(fast->next!=NULL && fast->next->next!=NULL){
+            fast=fast->next->next;
+            slow=slow->next;
+        }
+        return slow;   
+    }
 
-    ListNode* merge(ListNode* lh, ListNode* rh){
-        ListNode* t1=lh;
-        ListNode* t2=rh;
-        ListNode* dnode= new ListNode(-1);
-        ListNode*temp=dnode;
+    ListNode* merge(ListNode* left,ListNode* right){
+        ListNode* dummy=new ListNode(-1);
+        ListNode* tail=dummy;
+
+        ListNode* t1=left;
+        ListNode* t2=right;
+        
 
         while(t1!=NULL && t2!=NULL){
-            if(t1->val < t2->val){
-                temp->next=t1;
-                temp=temp->next;
+            if(t1->val < t2-> val){
+                tail->next=t1;
                 t1=t1->next;
             }else{
-                temp->next=t2;
-                temp=temp->next;
+                tail->next=t2;
                 t2=t2->next;
             }
+            tail=tail->next;
         }
-        if(t1){
-            temp->next=t1;
+
+        if(t1==NULL){
+            while(t2!=NULL){
+                tail->next=t2;
+                t2=t2->next;
+                tail=tail->next;
+            }
         }
-        if(t2){
-            temp->next=t2;
-        }
-        return dnode->next;
-    }
-
-
-    ListNode* sortList(ListNode* head) {
-        if(head==NULL ||head->next==NULL) return head;
-        ListNode* middle= middleNode(head);
-        ListNode* lh=head;
-        ListNode* rh=middle->next;
-        middle->next=NULL;
-
-        lh=sortList(lh);
-        rh=sortList(rh);
-        return merge(lh,rh);
         
+        if(t2==NULL){
+            while(t1!=NULL){
+                tail->next=t1;
+                t1=t1->next;
+                tail=tail->next;
+            }
+        }
+        
+        return dummy->next;
     }
+
 };
