@@ -14,9 +14,7 @@ public:
         string s="";
         vector<string> temp;
         temp.push_back(s);
-        
         vector<string> ans;
-
         for(char ch:digits){
             ans.clear();
             int n=ch-'0';
@@ -31,7 +29,6 @@ public:
             temp.clear();
             temp=ans;
         }
-
         return ans;
     }
 };
