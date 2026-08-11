@@ -5,14 +5,15 @@ public:
         int el=-1;
         int cnt=0;
 
-        for(int a:nums){
+        for(int i=0;i<n;i++){
             if(cnt==0){
-                el=a;
-                cnt++;
+                el=nums[i];
+                cnt=1;
             }
-            else if(el==a) cnt++;
+            else if(nums[i]==el) cnt++;
             else cnt--;
         }
+
         return el;
     }
 };
