@@ -38,9 +38,10 @@ public:
                 int row=i+dr[k];
                 int col=j+dc[k];
                 if(row>=0 && row<n && col>=0 && col<m){
-                    if(grid[row][col]=='1'&& vis[row][col]!=1)
+                    if(grid[row][col]=='1'&& vis[row][col]!=1){
                         q.push({row,col});
                         vis[row][col]=1;
+                    }
                 }
             }
             
