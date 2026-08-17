@@ -1,50 +1,57 @@
 class Solution {
 public:
     int numIslands(vector<vector<char>>& grid) {
-        int n=grid.size();
-        int m=grid[0].size();
-        vector<vector<int>> vis(n,vector<int>(m,0));
+        int m=grid.size();
+        int n=grid[0].size();
+
+        vector<vector<int>> visited(m,vector<int>(n,0));
 
         int cnt=0;
 
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(grid[i][j]=='1' && !vis[i][j]){
-                    bfs(i,j,grid,vis);
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(visited[i][j]==0 && grid[i][j]=='1'){
                     cnt++;
+                    bfs(i,j,visited,grid);
                 }
             }
         }
+
         return cnt;
     }
 
-    void bfs(int i, int j,vector<vector<char>>& grid, vector<vector<int>>& vis){
-        int n=grid.size();
-        int m=grid[0].size();
+
+    void bfs(int i,int j,vector<vector<int>> &visited, vector<vector<char>> &grid){
+        int m=grid.size();
+        int n=grid[0].size();
+
         queue<pair<int,int>> q;
         q.push({i,j});
-        vis[i][j]=1;
+        visited[i][j]=1;
 
-        int dr[] = {-1, 0, 1, 0};
-        int dc[] = {0, 1, 0, -1};
+        vector<int> dr={0,0,-1,1};
+        vector<int> dc={-1,1,0,0};
 
         while(!q.empty()){
-            int i=q.front().first;
-            int j=q.front().second;
+            int a=q.front().first;
+            int b=q.front().second;
+
             q.pop();
 
 
             for(int k=0;k<4;k++){
-                int row=i+dr[k];
-                int col=j+dc[k];
-                if(row>=0 && row<n && col>=0 && col<m){
-                    if(grid[row][col]=='1'&& vis[row][col]!=1){
-                        q.push({row,col});
-                        vis[row][col]=1;
+                int row=a+dr[k];
+                int col=b+dc[k];
+
+                if(row>=0 && row<m && col>=0 && col<n){
+                    if(visited[row][col]==0 && grid[row][col]=='1'){
+                        visited[row][col]=1;
+                        q.push({row,col});   
                     }
                 }
+
             }
-            
         }
+
     }
 };
