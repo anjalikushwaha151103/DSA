@@ -14,7 +14,6 @@ public:
             indegree[v]++;
         }
         
-        vector<int> visited(V,0);
         int cnt=0;
         queue<int> q;
         
