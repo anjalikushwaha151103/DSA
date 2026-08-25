@@ -11,7 +11,7 @@ public:
 
     int f(int i, int j,vector<vector<int>>& grid ,
     vector<vector<int>>& dp){
-        if(i==0 && j==0) return grid[0][0];
+        if(i==0 && j==0) return dp[0][0]=grid[0][0];
         if(i<0 || j<0 ) return 1e9;
 
         if(dp[i][j]!=-1) return dp[i][j];
