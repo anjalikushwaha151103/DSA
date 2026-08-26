@@ -6,11 +6,11 @@ public:
         for(int it:nums) sum+=it;
 
         if(sum %2==1) return false;
-        else return isSubsetSum(nums,sum/2);
+        else return isSubsetSum(nums,sum/2,n);
     }
 
-    bool isSubsetSum(vector<int>& arr, int sum) {
-        int n=arr.size();
+    bool isSubsetSum(vector<int>& arr, int sum,int n) {
+        // int n=arr.size();
         vector<bool> prev(sum+1,0);
         
         prev[0]=true;
