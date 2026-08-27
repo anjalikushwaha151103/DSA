@@ -1,27 +1,18 @@
 class Solution {
 public:
     int maxProduct(vector<int>& nums) {
-       int n=nums.size();
-       int currpos=nums[0];
-       int currneg=nums[0];
-       int ans=nums[0];
+        int n=nums.size();
+        int ans=nums[0];
+        int curpos=nums[0];
+        int curneg=nums[0];
 
-        for(int i=1;i<n;i++){
-            int a=nums[i];
-            if(a==0){
-                currpos=0;
-                currneg=0;
-                ans=max(ans,0);
-
-            }
-            else{
-                int temp=max(currpos*a,max(currneg*a,a));
-                currneg=min(currpos*a,min(currneg*a,a));
-                currpos=temp;
-                ans=max(ans,currpos);
-            }
+        for(int i =1;i<n;i++){
+            int x=nums[i];
+            int a=max(x,max(curpos*x,curneg*x));
+            curneg=min(x,min(curpos*x,curneg*x));
+            curpos=a;
+            ans=max(ans,curpos);
         }
-
         return ans;
     }
 };
