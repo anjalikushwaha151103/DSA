@@ -1,17 +1,13 @@
 class Solution {
 public:
     int uniquePaths(int m, int n) {
-        vector<int> prev(n+1,1);
-
-        for(int i=2;i<=m;i++){
-            vector<int> temp(n+1,0);
-            for(int j=1;j<=n;j++){
-                temp[j]=temp[j-1]+prev[j];
-            }
-            prev=temp;
-        }
-        return prev[n];
+        vector<vector<int>> dp(m+1,vector<int>(n+1,-1));
+        return f(m,n,dp);
     }
 
-    
+    int f(int m, int n ,vector<vector<int>> &dp) {
+        if(m==1 ||n==1) return 1;
+        if(dp[m][n]!=-1) return dp[m][n];
+        return dp[m][n]=f(m-1,n,dp)+f(m,n-1,dp);
+    }
 };
