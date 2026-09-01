@@ -11,50 +11,48 @@
  */
 class Solution {
 public:
-    struct item{
-        TreeNode* n;
-        int v;
-        int l;
-
-        item(TreeNode* n1,int v1,int l1){
-            n=n1;
-            v=v1;
-            l=l1;
-        }
-    };
-
     vector<vector<int>> verticalTraversal(TreeNode* root) {
         vector<vector<int>> ans;
         if(root==NULL) return ans;
 
+        queue<pair<TreeNode*,pair<int,int>>> q;
+        q.push({root,{0,0}});
 
-        map<int,map<int,vector<int>>> mp;
+        // map<pair<pair<int,int>,TreeNode*>> mp;
+        map<int,vector<pair<int,TreeNode*>>> mp;
 
-        queue<item> q;
-        q.push(item(root,0,0));
-
-        //push into q
         while(!q.empty()){
-            item a=q.front();
+            TreeNode* node=q.front().first;
+            int i=q.front().second.first;
+            int j=q.front().second.second;
 
-            if(a.n->left) q.push(item(a.n->left,a.v-1,a.l+1));
-            if(a.n->right) q.push(item(a.n->right,a.v+1,a.l+1));
+            // mp[{j,i}]=node;
+            mp[i].push_back({j,node});
 
-            mp[a.v][a.l].push_back(a.n->val);
             q.pop();
+
+            if(node->left) q.push({node->left,{i-1,j+1}});
+            if(node->right) q.push({node->right,{i+1,j+1}});
+
         }
+
 
         for(auto it:mp){
             vector<int> level;
-            for(auto x:it.second){
-                sort(x.second.begin(),x.second.end());
-                for(int i:x.second){
-                    level.push_back(i);
-                }
+
+            sort(it.second.begin(),it.second.end(),[](pair<int,TreeNode*> a,pair<int,TreeNode*>b){
+                if(a.first==b.first) return a.second->val<b.second->val;
+                return a.first<b.first;
+            });
+
+            for(auto k:it.second){
+                level.push_back(k.second->val);
             }
             ans.push_back(level);
         }
 
         return ans;
+        
+        
     }
 };
