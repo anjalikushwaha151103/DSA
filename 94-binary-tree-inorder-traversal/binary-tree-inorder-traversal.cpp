@@ -13,21 +13,13 @@ class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int> ans;
-        if(root==NULL) return ans;
-        
-        vector<int> left_tree= inorderTraversal(root->left);
-        for(int i=0;i<left_tree.size();i++){
-            ans.push_back(left_tree[i]);
-        }
-
-        ans.push_back(root->val);
-
-        vector<int> right_tree= inorderTraversal(root->right);
-        for(int i=0;i<right_tree.size();i++){
-            ans.push_back(right_tree[i]);
-        }
-
+        f(root,ans);
         return ans;
-        
+    }
+    void f(TreeNode* node ,vector<int> &ans){
+        if(node==NULL) return;
+        f(node->left,ans); 
+        ans.push_back(node->val);
+        f(node->right,ans); 
     }
 };
