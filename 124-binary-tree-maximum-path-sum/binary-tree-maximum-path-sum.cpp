@@ -16,16 +16,19 @@ public:
         int maxi=INT_MIN;
         f(root,maxi);
         return maxi;
-
     }
-    int f(TreeNode* root,int &maxi) {
+
+    int f(TreeNode* root, int &maxi){
         if(root==NULL) return 0;
-        int l=f(root->left,maxi);
-        if(l<0) l=0; 
-        int r=f(root->right ,maxi);
-        if(r<0) r=0; 
-        maxi=max(maxi,(root->val+l+r));
-        return root->val+ max(l,r) ;
+        int l=f(root->left,maxi); 
+        int r=f(root->right,maxi);
+
+        l=max(0,l); 
+        r=max(0,r); 
+
+        maxi=max(maxi,root->val+ l+r);
+
+        return root->val+ max(l,r);
 
     }
 };
