@@ -2,27 +2,31 @@ class Solution {
 public:
     int change(int amount, vector<int>& coins) {
         int n=coins.size();
-        vector<vector<int>> dp(n,vector<int>(amount+1,-1));
-        return f(n-1,amount , coins,dp);
-    }
-
-    int f(int i,int amount, vector<int>& coins , vector<vector<int>> &dp){
-        if(amount==0) return 1;
+        vector<long long> prev(amount+1,0);
         
-        if(amount<0) return 0;
+        //amount 0
+        prev[0]=1;
 
-        if(i==0){
-            if(amount% coins[0]==0) return 1;
-            else return 0;
+        //base case 
+        for(int j=1;j<=amount;j++){
+            if(j% coins[0]==0) prev[j]= 1;
+            else prev[j]= 0;
         }
 
-        if(dp[i][amount]!=-1) return dp[i][amount];
+        //iteration
+        for(int i=1;i<n;i++){
+            vector<long long> temp(amount+1,0);
+            temp[0]=1;
+            for(int j=1;j<=amount;j++){  
+                int take=0;
+                if(j-coins[i]>=0) take= temp[j-coins[i]];
+                int nottake=prev[j];
 
-        int take=f(i,amount-coins[i],coins,dp);
-        int nottake=0;
-        if(i>0) nottake=f(i-1,amount,coins,dp);
-
-        return dp[i][amount]=take+nottake;
-
+                temp[j]=(long long) take+nottake;
+            }
+            prev=temp;
+        }
+        return prev[amount];
     }
+
 };
